@@ -5,11 +5,6 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const { check, validationResult } = require("express-validator");
 
-// @route GET /api/profile
-// @desc Test Route
-// @access Public
-router.get("/", (req, res) => res.send("Profile Route"));
-
 // @route GET /api/profile/me
 // @desc Profile based on user id
 // @access Private
@@ -91,5 +86,19 @@ router.post(
     }
   }
 );
+
+// @route GET /api/profile
+// @desc GET ALL PROFILES
+// @access Public
+
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name,avtar"]);
+    return res.json(profiles);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
