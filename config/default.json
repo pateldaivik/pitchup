@@ -1,4 +1,0 @@
-{
-  "mongoURI": "mongodb+srv://pitchupAdmin:pitchup123@pitchup.xcm6z.mongodb.net/pitchupDB?retryWrites=true&w=majority",
-  "jwtSecret": "mysecrettoken"
-}
